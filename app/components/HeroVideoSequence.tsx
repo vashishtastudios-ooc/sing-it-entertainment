@@ -201,9 +201,11 @@ export default function HeroVideoSequence() {
             <h1 className="hero-vseq-title">
               UNFORGETTABLE
               <br />
-              EVENTS.
+              ENTERTAINMENT.
+              <br />
+              Seamlessly Managed.
             </h1>
-            <p className="hero-vseq-sub">World-class talent. UK &amp; UAE.</p>
+            <p className="hero-vseq-sub">World-class entertainment. UK &amp; Worldwide.</p>
             <Link href="/contact" className="hero-star-btn" aria-label="Get in touch">
               <span className="hero-star-sweep hero-star-sweep-top" />
               <span className="hero-star-sweep hero-star-sweep-bottom" />
@@ -237,7 +239,7 @@ export default function HeroVideoSequence() {
               EVENTS.
             </h2>
             <p className="hero-vseq-sub">
-              Corporate. Private. Public. World-class talent across the UK &amp; UAE.
+              Corporate. Private. Hospitality. World-class entertainment across the UK &amp; internationally.
             </p>
           </div>
         </motion.div>

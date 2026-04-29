@@ -1,20 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import SiteHeader from "./SiteHeader";
 
 const eventTypes = [
-  "DJs 🎧",
-  "Singers 🎤",
-  "Musicians 🎻",
-  "Dancers 💃",
-  "Magicians 🎩",
-  "Circus Performers 🎪",
+  { id: "djs", label: "DJs", display: "DJs 🎧" },
+  { id: "singers", label: "Singers", display: "Singers 🎤" },
+  { id: "musicians", label: "Musicians", display: "Musicians 🎻" },
+  { id: "dancers", label: "Dancers", display: "Dancers 💃" },
+  { id: "magicians", label: "Magicians", display: "Magicians 🎩" },
+  { id: "circus-performers", label: "Circus Performers", display: "Circus Performers 🎪" },
 ];
 
 export default function ContactPageContent() {
+  const searchParams = useSearchParams();
   const [activeType, setActiveType] = useState<string>("");
+  const [visionText, setVisionText] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  const getPrefillMessage = (serviceLabel: string) =>
+    `I'm interested in booking ${serviceLabel} for my event.`;
+
+  useEffect(() => {
+    const serviceParam = searchParams.get("service");
+    if (!serviceParam) return;
+    const match = eventTypes.find(
+      (chip) => chip.label.toLowerCase() === serviceParam.toLowerCase()
+    );
+    if (match) {
+      setActiveType(match.id);
+      setVisionText(getPrefillMessage(match.label));
+    }
+  }, [searchParams]);
 
   return (
     <main className="contactx-page">
@@ -106,11 +124,14 @@ export default function ContactPageContent() {
               {eventTypes.map((chip) => (
                 <button
                   type="button"
-                  key={chip}
-                  className={`contactx-chip ${activeType === chip ? "is-active" : ""}`}
-                  onClick={() => setActiveType(chip)}
+                  key={chip.id}
+                  className={`contactx-chip ${activeType === chip.id ? "is-active" : ""}`}
+                  onClick={() => {
+                    setActiveType(chip.id);
+                    setVisionText(getPrefillMessage(chip.label));
+                  }}
                 >
-                  {chip}
+                  {chip.display}
                 </button>
               ))}
             </div>
@@ -135,6 +156,8 @@ export default function ContactPageContent() {
               id="cx-vision"
               className="contactx-textarea"
               placeholder="Describe your event, guest count, atmosphere, any specific requests…"
+              value={visionText}
+              onChange={(e) => setVisionText(e.target.value)}
             />
           </div>
 

@@ -69,7 +69,7 @@ const aboutCards = [
   { image: "/images/about1.webp", title: "Live Moments", description: "World-class delivery" },
   { image: "/images/aboutpage1.webp", title: "Roster", description: "Trusted artists" },
   { image: "/images/aboutpage2.webp", title: "Vision", description: "Tailored to every client" },
-  { image: "/images/aboutpage3.webp", title: "Global Reach", description: "UK and GCC coverage" },
+  { image: "/images/aboutpage3.webp", title: "Global Reach", description: "UK and internationally" },
 ];
 
 const testimonials = [
@@ -144,25 +144,20 @@ export default function Home() {
               <p className="eyebrow">WHO ARE WE</p>
               <ScrollRevealHeading text="ABOUT US" />
               <p className="lead">
-                An entertainment agency built by entertainment professionals, that
-                is the unique, wonderful edge and insight Sing It has above others.
-                Sing It Entertainment is a business built on personal relationships
-                forged over years through hands on experience and industry
-                knowledge.
+                Sing It Entertainment is an entertainment agency built by entertainment professionals — and that is the edge that sets us apart.
+              </p>
+              <p className="lead">
+                Founded by Haifa Jordan, a professional vocalist with over 25 years of experience performing at events across the UK, Middle East and internationally, Sing It operates across two core areas.
+              </p>
+              <p className="lead">
+                For venues and hospitality businesses, we offer a fully outsourced entertainment management service — taking over your complete entertainment schedule so your team can focus on running the business. For private and corporate clients, we supply world-class talent for weddings, milestone celebrations, corporate events, product launches and private parties. Every artist on our roster is personally vetted.
+              </p>
+              <p className="lead">
+                Our clients include Genting Casinos, Metropolitan Casinos, Hilton, Rosewood, Soho House, BBC, Eurovision, Sony and many more across the UK and internationally.
               </p>
               <a href="#contact" className="ghost-link">
                 FIND OUT MORE
               </a>
-              <p className="lead">
-                From global personalities to backing artists, illusionists to
-                dancers and circus performers, each artist included in our
-                extensive roster is vetted personally which means you as a client
-                can trust us whole heartedly to supply the kind of talent you
-                should expect. Add to this passion and dedication to our industry
-                and you can see why we are recommended time and time again.
-                Successfully grown in the UK, Sing It Entertainment is now
-                providing the GCC with the same quality artists.
-              </p>
             </div>
             <div className="about-bento about-bento--desktop">
               <MagicBento
@@ -189,8 +184,11 @@ export default function Home() {
 
       <section id="services" className="services">
         <div className="container">
-          <p className="eyebrow">WHAT WE OFFER</p>
+          <p className="eyebrow">FOR PRIVATE &amp; CORPORATE EVENTS</p>
           <ScrollRevealHeading text="OUR TALENT" />
+          <p className="lead" style={{ maxWidth: "780px", marginBottom: "8px" }}>
+            For over 25 years, Sing It Entertainment has been supplying world-class artists to weddings, private celebrations, corporate events, product launches and public performances across the UK and internationally. Every artist on our roster is personally vetted. We work with your budget, your brief and your vision to deliver something truly unforgettable.
+          </p>
           <a href="#contact" className="ghost-link">
             FIND OUT MORE
           </a>
@@ -207,6 +205,9 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow">WHO WE WORK WITH</p>
           <ScrollRevealHeading text="OUR PARTNERS" />
+          <p className="lead" style={{ maxWidth: "780px", marginBottom: "32px" }}>
+            From independent restaurants and casino groups to global hotel brands and private clients — Sing It Entertainment has built a reputation for excellence across the UK and internationally.
+          </p>
           <div className="partners-logo-grid" aria-label="Partner logo grid">
             {partnerLogos.map((logo) => (
               <div className="partner-logo-item" key={logo.name}>
@@ -226,7 +227,7 @@ export default function Home() {
       <section id="testimonials" className="testimonials">
         <div className="container">
           <p className="eyebrow">WHAT THEY SAY</p>
-          <ScrollRevealHeading text="TESTIMONIALS" />
+          <ScrollRevealHeading text="WHAT OUR CLIENTS SAY" />
           <TestimonialsSlider items={testimonials} />
         </div>
       </section>
@@ -241,7 +242,7 @@ export default function Home() {
       <section id="contact" className="contact">
         <div className="container">
           <p className="eyebrow">LETS CHAT</p>
-          <ScrollRevealHeading text="CONTACTUS" />
+          <ScrollRevealHeading text="CONTACT US" />
           <div className="contact-lines">
             <a href="tel:+447949040404">+44 7949 040 404</a>
             <a href="mailto:myevent@singit.uk.com">myevent@singit.uk.com</a>
@@ -253,7 +254,7 @@ export default function Home() {
       </section>
       <footer className="site-footer">
         <div className="container">
-          <p>© 2023 Sing It Entertainment FZ LLC.</p>
+          <p>© 2026 Sing It Events Ltd.</p>
         </div>
       </footer>
     </main>

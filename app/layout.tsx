@@ -6,9 +6,29 @@ const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-body" });
 const playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
 
 export const metadata: Metadata = {
-  title: "Sing It Entertainment | Luxury Events & Talent Agency",
+  title: "World-Class Entertainment Management | Weddings, Events, Restaurants & Casinos | Sing It Entertainment",
   description:
-    "World-class entertainment for corporate, private and public events across the UK and UAE.",
+    "Sing It Entertainment delivers world-class artists for weddings, corporate events and private occasions — and provides fully outsourced entertainment management for restaurants, hotels and casinos across the UK and internationally.",
+  keywords: [
+    "outsourced entertainment management",
+    "entertainment agency",
+    "restaurant entertainment",
+    "casino entertainment",
+    "hotel entertainment",
+    "wedding entertainment",
+    "corporate events",
+    "private events",
+    "live music",
+    "artist booking",
+    "UK",
+    "international",
+  ],
+  openGraph: {
+    title: "Sing It Entertainment | World-Class Entertainment. Seamlessly Managed.",
+    description:
+      "From outsourced entertainment management for hospitality venues to world-class artists for private events — Sing It delivers extraordinary entertainment across the UK and worldwide.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

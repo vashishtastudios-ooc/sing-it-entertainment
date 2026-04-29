@@ -66,13 +66,16 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="service-hero">
         <div className="container service-hero-layout">
           <div>
-            <p className="eyebrow">UK EVENT ENTERTAINMENT</p>
+            <p className="eyebrow">WORLD-CLASS EVENT ENTERTAINMENT</p>
             <h1>{service.title}</h1>
             <p className="lead">{service.intro}</p>
             <div className="service-actions">
-              <a href="mailto:myevent@singit.uk.com" className="cta">
+              <Link
+                href={`/contact?service=${encodeURIComponent(service.shortTitle)}`}
+                className="cta"
+              >
                 Enquire Now
-              </a>
+              </Link>
               <Link href="/" className="ghost-link">
                 Back to Home
               </Link>

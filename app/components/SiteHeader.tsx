@@ -36,6 +36,7 @@ export default function SiteHeader({ alwaysVisible = false }: { alwaysVisible?: 
         <nav className="simple-links">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
+          <Link href="/for-venues">For Venues</Link>
           <div className="nav-services-menu">
             <a href="#services">Services</a>
             <div className="nav-services-dropdown">
