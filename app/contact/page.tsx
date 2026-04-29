@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 import ContactPageContent from "../components/ContactPageContent";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className={inter.className}>
-      <ContactPageContent />
+      <Suspense fallback={<div>Loading contact…</div>}>
+        <ContactPageContent />
+      </Suspense>
     </div>
   );
 }
