@@ -1,20 +1,20 @@
-# Use official Node image
+# Use Node image
 FROM node:20-alpine
 
-# Create app directory
 WORKDIR /app
 
-# Copy package files
+# Install deps
 COPY package*.json ./
+RUN npm install
 
-# Install dependencies
-RUN npm install --production
-
-# Copy app source
+# Copy source
 COPY . .
 
-# Expose port (change if your app uses different)
+# Build Next.js app
+RUN npm run build
+
+# Expose port
 EXPOSE 3000
 
-# Run app
+# Start production server
 CMD ["npm", "start"]
