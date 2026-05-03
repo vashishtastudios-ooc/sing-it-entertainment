@@ -1,5 +1,6 @@
 import MagicBento from "./components/MagicBento";
 import Image from "next/image";
+import Link from "next/link";
 import TestimonialsSlider from "./components/TestimonialsSlider";
 import EventsCarousel from "./components/EventsCarousel";
 import TalentGrid from "./components/TalentGrid";
@@ -64,12 +65,36 @@ const partnerLogos = [
 ];
 
 const aboutCards = [
-  { image: "/images/about-left.webp", title: "Team Story", description: "Built by professionals" },
-  { image: "/images/about-right.webp", title: "Luxury Events", description: "Bespoke experiences" },
-  { image: "/images/about1.webp", title: "Live Moments", description: "World-class delivery" },
-  { image: "/images/aboutpage1.webp", title: "Roster", description: "Trusted artists" },
-  { image: "/images/aboutpage2.webp", title: "Vision", description: "Tailored to every client" },
-  { image: "/images/aboutpage3.webp", title: "Global Reach", description: "UK and internationally" },
+  {
+    image: "/images/about-left.jpg",
+    title: "People-first agency",
+    description: "Experts guiding you from brief to showtime, calmly and clearly.",
+  },
+  {
+    image: "/images/about-right.jpg",
+    title: "Bespoke by design",
+    description: "Shaped around your brand, venue, and guests—not off-the-shelf.",
+  },
+  {
+    image: "/images/about1.jpg",
+    title: "Led by experience",
+    description: "Performers and planners who know what excellence looks like live.",
+  },
+  {
+    image: "/images/aboutpage1.jpg",
+    title: "Talent you can trust",
+    description: "World-class roster—personally vetted and rehearsal-ready.",
+  },
+  {
+    image: "/images/aboutpage2.webp",
+    title: "Vision to atmosphere",
+    description: "Your ideas turned into cohesive sound, light, and live energy.",
+  },
+  {
+    image: "/images/aboutpage3.webp",
+    title: "UK & worldwide",
+    description: "London launches to international events—we deliver where you host.",
+  },
 ];
 
 const testimonials = [
@@ -136,6 +161,24 @@ export default function Home() {
       <SiteHeader />
 
       <HeroVideoSequence />
+
+      <section className="audience-split">
+        <div className="container audience-split-inner">
+          <p className="eyebrow">START HERE</p>
+          <h2 className="audience-split-title">Tell us what you need</h2>
+          <div className="audience-split-actions">
+            <Link href="/for-venues" className="audience-split-btn audience-split-btn--venue">
+              I am a venue
+            </Link>
+            <Link
+              href="/private-clients"
+              className="audience-split-btn audience-split-btn--private"
+            >
+              I am a private client
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section id="about" className="about">
         <div className="container">

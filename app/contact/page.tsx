@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className={inter.className}>
-      <Suspense fallback={<div>Loading contact…</div>}>
+      <Suspense fallback={null}>
         <ContactPageContent />
       </Suspense>
     </div>

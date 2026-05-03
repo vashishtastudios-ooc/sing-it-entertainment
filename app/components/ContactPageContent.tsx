@@ -13,16 +13,35 @@ const eventTypes = [
   { id: "circus-performers", label: "Circus Performers", display: "Circus Performers 🎪" },
 ];
 
+const audienceTypes = [
+  { id: "venue", label: "I am a venue" },
+  { id: "private-client", label: "I am a private client" },
+];
+
 export default function ContactPageContent() {
   const searchParams = useSearchParams();
+  const [activeAudience, setActiveAudience] = useState<string>("");
   const [activeType, setActiveType] = useState<string>("");
   const [visionText, setVisionText] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const getPrefillMessage = (serviceLabel: string) =>
     `I'm interested in booking ${serviceLabel} for my event.`;
+  const getAudiencePrefillMessage = (audienceLabel: string) =>
+    `I'm interested in learning more about your ${audienceLabel.toLowerCase()} services.`;
 
   useEffect(() => {
+    const audienceParam = searchParams.get("audience");
+    if (audienceParam) {
+      const audienceMatch = audienceTypes.find((a) => a.id === audienceParam);
+      if (audienceMatch) {
+        setActiveAudience(audienceMatch.id);
+        if (!searchParams.get("service")) {
+          setVisionText(getAudiencePrefillMessage(audienceMatch.label));
+        }
+      }
+    }
+
     const serviceParam = searchParams.get("service");
     if (!serviceParam) return;
     const match = eventTypes.find(
@@ -114,6 +133,28 @@ export default function ContactPageContent() {
             <div className="contactx-field">
               <label className="contactx-field-label" htmlFor="cx-email">Email address</label>
               <input id="cx-email" className="contactx-input" type="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          {/* Audience type */}
+          <div className="contactx-chip-section">
+            <p className="contactx-chip-label">Who are you?</p>
+            <div className="contactx-audience-grid">
+              {audienceTypes.map((audience) => (
+                <button
+                  type="button"
+                  key={audience.id}
+                  className={`contactx-chip ${activeAudience === audience.id ? "is-active" : ""}`}
+                  onClick={() => {
+                    setActiveAudience(audience.id);
+                    if (!activeType) {
+                      setVisionText(getAudiencePrefillMessage(audience.label));
+                    }
+                  }}
+                >
+                  {audience.label}
+                </button>
+              ))}
             </div>
           </div>
 

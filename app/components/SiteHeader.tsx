@@ -37,8 +37,9 @@ export default function SiteHeader({ alwaysVisible = false }: { alwaysVisible?: 
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/for-venues">For Venues</Link>
+          <Link href="/private-clients">Private Clients</Link>
           <div className="nav-services-menu">
-            <a href="#services">Services</a>
+            <Link href="/services">Services</Link>
             <div className="nav-services-dropdown">
               {servicePages.map((service) => (
                 <Link key={service.slug} href={`/services/${service.slug}`} className="nav-services-item">

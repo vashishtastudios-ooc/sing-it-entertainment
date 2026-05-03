@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
+import ScrollRevealHeading from "../components/ScrollRevealHeading";
+import EventsCarousel from "../components/EventsCarousel";
 
 export const metadata: Metadata = {
   title: "Outsourced Entertainment Management for Restaurants, Hotels & Casinos | Sing It Entertainment",
@@ -46,6 +48,13 @@ const venueTypes = [
   },
 ];
 
+const venueEventCards = Array.from({ length: 10 }, (_, i) => ({
+  id: i + 1,
+  mediaUrl: `/videos/venues/venue-reel-${i + 1}.mp4`,
+  mediaType: "video" as const,
+  title: `Venue Reel ${i + 1}`,
+}));
+
 export default function ForVenuesPage() {
   return (
     <main className="for-venues-page">
@@ -66,7 +75,7 @@ export default function ForVenuesPage() {
             From weekly artist bookings and scheduling to last-minute cancellations, sickness cover and in-house sound systems — Sing It runs the entire operation seamlessly, within your existing budget. Serving venues across the UK and internationally.
           </p>
           <div className="fv-hero-ctas">
-            <a href="mailto:myevent@singit.uk.com" className="cta">Get in Touch</a>
+            <Link href="/contact?audience=venue" className="cta">Get in Touch</Link>
             <a href="tel:+447949040404" className="ghost-link">+44 7949 040 404</a>
           </div>
         </div>
@@ -147,6 +156,13 @@ export default function ForVenuesPage() {
         </div>
       </section>
 
+      <section className="fv-section events">
+        <div className="container">
+          <ScrollRevealHeading text="SEE IT IN REAL VENUES" />
+          <EventsCarousel cards={venueEventCards} />
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="fv-cta-section">
         <div className="container fv-cta-inner">
@@ -158,9 +174,9 @@ export default function ForVenuesPage() {
             <a href="tel:+447949040404" className="fv-cta-link">+44 7949 040 404</a>
             <a href="mailto:myevent@singit.uk.com" className="fv-cta-link">myevent@singit.uk.com</a>
           </div>
-          <a href="mailto:myevent@singit.uk.com" className="cta" style={{ marginTop: "24px", display: "inline-block" }}>
+          <Link href="/contact?audience=venue" className="cta" style={{ marginTop: "24px", display: "inline-block" }}>
             Get in Touch
-          </a>
+          </Link>
           <p className="fv-cta-note">Serving restaurants, hotels and casinos across the UK and internationally.</p>
         </div>
       </section>

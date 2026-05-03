@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { servicePages } from "./data";
+import ScrollRevealHeading from "../components/ScrollRevealHeading";
+import ServicesMegaGrid from "../components/ServicesMegaGrid";
+import { serviceCatalogItems } from "./catalog";
 
 export const metadata: Metadata = {
-  title: "Entertainment Services UK | DJs, Singers, Musicians & More | Sing It",
+  title: "Entertainment Services | Sing It Entertainment",
   description:
-    "Explore event entertainment services across the UK including DJs, singers, musicians, dancers, magicians and circus performers.",
+    "Explore our full entertainment services catalog, from DJs and singers to aerial acts, show productions and specialty event experiences across the UK and internationally.",
   alternates: {
     canonical: "https://www.singitentertainment.com/services",
   },
@@ -13,23 +15,34 @@ export const metadata: Metadata = {
 
 export default function ServicesIndexPage() {
   return (
-    <main className="service-page">
-      <section className="service-details">
+    <main className="services-index-page">
+      <section className="services-index-hero">
         <div className="container">
-          <p className="eyebrow">UK EVENT ENTERTAINMENT</p>
-          <h1>Our Services</h1>
+          <p className="eyebrow">WORLD-CLASS EVENT ENTERTAINMENT</p>
+          <ScrollRevealHeading text="OUR SERVICES" />
           <p className="lead">
-            Browse our premium service categories for corporate, private and wedding events across the UK.
+            Sing It provides a unique and bespoke service with a network unlike any other.
+            Our talent pool comprises a vast array of entertainers enabling us to bring
+            any event to life, from highly stylized themes to seamless guest experiences.
           </p>
-          <ul className="service-bullets">
-            {servicePages.map((service) => (
-              <li key={service.slug}>
-                <Link href={`/services/${service.slug}`} className="service-link">
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p className="lead services-index-subline">
+            Browse every premium service category for corporate, private and wedding
+            events across the UK and internationally.
+          </p>
+          <div className="services-index-actions">
+            <Link href="/for-venues" className="audience-split-btn audience-split-btn--venue">
+              For Venues
+            </Link>
+            <Link href="/private-clients" className="audience-split-btn audience-split-btn--private">
+              Private Clients
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="services-index-grid-section">
+        <div className="container">
+          <ServicesMegaGrid items={serviceCatalogItems} />
         </div>
       </section>
     </main>

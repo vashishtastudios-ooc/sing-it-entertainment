@@ -38,7 +38,7 @@ export default function AboutPage() {
           </article>
           <article className="aboutx-image-panel">
             <Image
-              src="/images/about-right.webp"
+              src="/images/about-right.jpg"
               alt="Sing It Entertainment team"
               fill
               sizes="(max-width: 980px) 100vw, 45vw"
@@ -52,7 +52,7 @@ export default function AboutPage() {
         <div className="container aboutx-story-grid">
           <article className="aboutx-image-panel">
             <Image
-              src="/images/about-left.webp"
+              src="/images/about-left.jpg"
               alt="The story behind Sing It"
               fill
               sizes="(max-width: 980px) 100vw, 45vw"
@@ -126,7 +126,7 @@ export default function AboutPage() {
           </article>
           <article className="aboutx-image-panel">
             <Image
-              src="/images/about1.webp"
+              src="/images/about1.jpg"
               alt="Haifa Jordan - Director of Sing It"
               fill
               sizes="(max-width: 980px) 100vw, 42vw"

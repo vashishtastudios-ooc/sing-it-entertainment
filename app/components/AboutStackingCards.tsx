@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 
 export type AboutStackCard = {
   image: string;
@@ -15,71 +14,34 @@ interface AboutStackingCardsProps {
 }
 
 export default function AboutStackingCards({ cards }: AboutStackingCardsProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
   return (
-    <div ref={containerRef} className="about-stack-wrap">
-      {cards.map((card, i) => {
-        const targetScale = 1 - (cards.length - i) * 0.04;
-        return (
-          <StackCard
-            key={`about-stack-${i}`}
-            index={i}
-            card={card}
-            progress={scrollYProgress}
-            range={[i * (1 / cards.length), 1]}
-            targetScale={targetScale}
-          />
-        );
-      })}
-    </div>
-  );
-}
-
-interface StackCardProps {
-  index: number;
-  card: AboutStackCard;
-  progress: MotionValue<number>;
-  range: [number, number];
-  targetScale: number;
-}
-
-function StackCard({ index, card, progress, range, targetScale }: StackCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "start start"],
-  });
-
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.3, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
-
-  return (
-    <div ref={cardRef} className="about-stack-card-shell">
-      <motion.div
-        className="about-stack-card"
-        style={{ scale, top: `calc(10vh + ${index * 22}px)` }}
-      >
-        <div className="about-stack-card-media">
-          <motion.div className="about-stack-card-img-wrap" style={{ scale: imageScale }}>
+    <div className="about-mobile-showcase">
+      {cards.map((card, index) => (
+        <motion.article
+          key={`about-mobile-${card.title}-${index}`}
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.35, ease: "easeOut", delay: Math.min(index * 0.04, 0.2) }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={`about-mobile-card ${index % 2 === 0 ? "is-left" : "is-right"}`}
+        >
+          <div className="about-mobile-card-media">
             <Image
               src={card.image}
               alt={card.title}
               fill
-              sizes="(max-width: 768px) 90vw, 600px"
-              className="about-stack-card-img"
+              sizes="(max-width: 980px) 100vw, 480px"
+              className="about-mobile-card-img"
             />
-          </motion.div>
-        </div>
-        <div className="about-stack-card-copy">
-          <h3 className="about-stack-card-title">{card.title}</h3>
-          <p className="about-stack-card-desc">{card.description}</p>
-        </div>
-      </motion.div>
+            <div className="about-mobile-card-overlay" />
+          </div>
+
+          <div className="about-mobile-card-copy">
+            <h3 className="about-mobile-card-title">{card.title}</h3>
+            <p className="about-mobile-card-desc">{card.description}</p>
+          </div>
+        </motion.article>
+      ))}
     </div>
   );
 }
