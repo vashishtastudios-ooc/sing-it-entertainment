@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const AUTO_SCROLL_DELAY_MS = 4000;
 const TRANSITION_DURATION_MS = 1000;
 const WHEEL_COOLDOWN_MS = 150;
+const HERO_ONE_VIDEO_URL = "/videos/hero-1.mp4";
+const HERO_TWO_VIDEO_URL = "/videos/hero-2.mp4";
 
 export default function HeroVideoSequence() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,7 +16,6 @@ export default function HeroVideoSequence() {
   const isAnimatingRef = useRef(false);
   const lastWheelAtRef = useRef(0);
   const rafIdRef = useRef<number | null>(null);
-  const [videoTwoSrc, setVideoTwoSrc] = useState("/videos/hero-2.mp4");
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -188,7 +189,7 @@ export default function HeroVideoSequence() {
         >
           <video
             className="hero-vseq-video"
-            src="/videos/hero-1.mp4"
+            src={HERO_ONE_VIDEO_URL}
             autoPlay
             muted
             loop
@@ -220,13 +221,12 @@ export default function HeroVideoSequence() {
         >
           <video
             className="hero-vseq-video"
-            src={videoTwoSrc}
+            src={HERO_TWO_VIDEO_URL}
             autoPlay
             muted
             loop
             playsInline
             preload="metadata"
-            onError={() => setVideoTwoSrc("/videos/hero-1.mp4")}
           />
           <div className="hero-vseq-overlay hero-vseq-overlay-strong" />
           <div className="container hero-vseq-content">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ScrollRevealHeading from "../components/ScrollRevealHeading";
 import ServicesMegaGrid from "../components/ServicesMegaGrid";
+import SiteHeader from "../components/SiteHeader";
 import { serviceCatalogItems } from "./catalog";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 export default function ServicesIndexPage() {
   return (
     <main className="services-index-page">
+      <SiteHeader alwaysVisible />
       <section className="services-index-hero">
         <div className="container">
           <p className="eyebrow">WORLD-CLASS EVENT ENTERTAINMENT</p>

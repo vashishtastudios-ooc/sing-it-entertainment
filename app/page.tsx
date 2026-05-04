@@ -66,22 +66,22 @@ const partnerLogos = [
 
 const aboutCards = [
   {
-    image: "/images/about-left.jpg",
+    image: "/images/about-left.webp",
     title: "People-first agency",
     description: "Experts guiding you from brief to showtime, calmly and clearly.",
   },
   {
-    image: "/images/about-right.jpg",
+    image: "/images/about-right.webp",
     title: "Bespoke by design",
     description: "Shaped around your brand, venue, and guests—not off-the-shelf.",
   },
   {
-    image: "/images/about1.jpg",
+    image: "/images/about1.webp",
     title: "Led by experience",
     description: "Performers and planners who know what excellence looks like live.",
   },
   {
-    image: "/images/aboutpage1.jpg",
+    image: "/images/aboutpage3.webp",
     title: "Talent you can trust",
     description: "World-class roster—personally vetted and rehearsal-ready.",
   },
@@ -91,7 +91,7 @@ const aboutCards = [
     description: "Your ideas turned into cohesive sound, light, and live energy.",
   },
   {
-    image: "/images/aboutpage3.webp",
+    image: "/images/index-main4.webp",
     title: "UK & worldwide",
     description: "London launches to international events—we deliver where you host.",
   },
@@ -164,17 +164,16 @@ export default function Home() {
 
       <section className="audience-split">
         <div className="container audience-split-inner">
-          <p className="eyebrow">START HERE</p>
-          <h2 className="audience-split-title">Tell us what you need</h2>
+          <p className="eyebrow audience-split-eyebrow">START HERE</p>
           <div className="audience-split-actions">
             <Link href="/for-venues" className="audience-split-btn audience-split-btn--venue">
-              I am a venue
+              I AM A VENUE
             </Link>
             <Link
               href="/private-clients"
               className="audience-split-btn audience-split-btn--private"
             >
-              I am a private client
+              I AM A PRIVATE CLIENT
             </Link>
           </div>
         </div>

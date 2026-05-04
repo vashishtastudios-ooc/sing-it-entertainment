@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AboutParallaxScene from "../components/AboutParallaxScene";
+import SiteHeader from "../components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "About Us | Sing It Entertainment",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="aboutx-page">
+      <SiteHeader alwaysVisible />
       <AboutParallaxScene />
 
       <section className="aboutx-hero">
@@ -38,11 +40,12 @@ export default function AboutPage() {
           </article>
           <article className="aboutx-image-panel">
             <Image
-              src="/images/about-right.jpg"
+              src="/images/sing-it-logo-excon.png"
               alt="Sing It Entertainment team"
               fill
               sizes="(max-width: 980px) 100vw, 45vw"
               className="aboutx-img"
+              style={{ objectFit: "contain" }}
             />
           </article>
         </div>
@@ -52,7 +55,7 @@ export default function AboutPage() {
         <div className="container aboutx-story-grid">
           <article className="aboutx-image-panel">
             <Image
-              src="/images/about-left.jpg"
+              src="/images/about-right.jpg"
               alt="The story behind Sing It"
               fill
               sizes="(max-width: 980px) 100vw, 45vw"
@@ -126,7 +129,7 @@ export default function AboutPage() {
           </article>
           <article className="aboutx-image-panel">
             <Image
-              src="/images/about1.jpg"
+              src="/images/about-left.jpg"
               alt="Haifa Jordan - Director of Sing It"
               fill
               sizes="(max-width: 980px) 100vw, 42vw"

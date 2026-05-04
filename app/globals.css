@@ -2418,6 +2418,11 @@ a {
   text-align: center;
 }
 
+.audience-split-eyebrow {
+  font-weight: 800;
+  font-size: 16px;
+}
+
 .audience-split-title {
   margin: 8px 0 18px;
   font-family: var(--font-heading), Georgia, serif;
