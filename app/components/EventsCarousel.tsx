@@ -80,19 +80,8 @@ function StoryCard({ card }: { card: EventCard }) {
           className="object-cover pointer-events-none transition-transform duration-700 group-hover:scale-110"
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
       <div className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
         <div className="h-full w-full rounded-2xl [background:radial-gradient(260px_circle_at_center,rgba(212,32,106,0.5)_0%,rgba(212,32,106,0.2)_35%,transparent_68%)] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] [-webkit-mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] [mask-composite:exclude] [-webkit-mask-composite:xor] p-[3px]" />
-      </div>
-      <div className="relative z-10 flex h-full items-end p-5">
-        <div className="space-y-2">
-          {card.mediaType === "video" ? (
-            <span className="inline-flex rounded-full border border-[#f3377f]/50 bg-black/50 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-[#f3377f]">
-              Reel
-            </span>
-          ) : null}
-          <h4 className="text-white text-lg font-semibold tracking-wide">{card.title}</h4>
-        </div>
       </div>
     </motion.div>
   );

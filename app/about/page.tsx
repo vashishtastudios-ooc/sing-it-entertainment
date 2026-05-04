@@ -7,7 +7,7 @@ import SiteHeader from "../components/SiteHeader";
 export const metadata: Metadata = {
   title: "About Us | Sing It Entertainment",
   description:
-    "Learn about Sing It Entertainment, our story, and the experience behind our bespoke event entertainment services across the UK and UAE.",
+    "Learn about Sing It Entertainment, our story, and the experience behind our bespoke event entertainment services across the UK & Worldwide.",
   alternates: {
     canonical: "https://www.singitentertainment.com/about",
   },
@@ -40,12 +40,12 @@ export default function AboutPage() {
           </article>
           <article className="aboutx-image-panel">
             <Image
-              src="/images/sing-it-logo-excon.png"
-              alt="Sing It Entertainment team"
+              src="/images/hero-logo.jpeg"
+              alt="Sing It Entertainment - Bespoke Entertainment"
               fill
               sizes="(max-width: 980px) 100vw, 45vw"
               className="aboutx-img"
-              style={{ objectFit: "contain" }}
+              priority
             />
           </article>
         </div>

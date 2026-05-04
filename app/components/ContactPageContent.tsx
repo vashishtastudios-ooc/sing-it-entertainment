@@ -69,10 +69,10 @@ export default function ContactPageContent() {
           </h1>
           <p className="contactx-subline">
             Share your vision and we&apos;ll shape a premium entertainment
-            experience across the UAE and UK.
+            experience across the UK &amp; Worldwide.
           </p>
           <div className="contactx-trust-pills">
-            <span className="contactx-trust-pill">UAE &amp; UK</span>
+            <span className="contactx-trust-pill">UK &amp; Worldwide</span>
             <span className="contactx-trust-pill">25+ years</span>
             <span className="contactx-trust-pill">Bespoke experiences</span>
             <span className="contactx-trust-pill">Reply within 24h</span>
