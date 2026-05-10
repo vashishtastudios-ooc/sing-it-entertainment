@@ -48,12 +48,38 @@ const venueTypes = [
   },
 ];
 
-const venueEventCards = Array.from({ length: 10 }, (_, i) => ({
-  id: i + 1,
-  mediaUrl: `/videos/venues/venue-reel-${i + 1}.mp4`,
-  mediaType: "video" as const,
-  title: `Venue Reel ${i + 1}`,
-}));
+const venueEventCards: {
+  id: number;
+  mediaUrl: string;
+  mediaType: "image" | "video";
+  title: string;
+}[] = [
+  { id: 1, mediaUrl: "/images/venue-artists/haifa-showband.jpg", mediaType: "image", title: "Haifa with live showband at venue" },
+  { id: 2, mediaUrl: "/videos/venues/venue-reel-1.mp4", mediaType: "video", title: "Venue performance reel 1" },
+  { id: 3, mediaUrl: "/images/venue-artists/singer-musicians-trio.jpg", mediaType: "image", title: "Singer with full musicians trio" },
+  { id: 4, mediaUrl: "/videos/venues/venue-reel-2.mp4", mediaType: "video", title: "Venue performance reel 2" },
+  { id: 5, mediaUrl: "/images/venue-artists/string-trio.jpg", mediaType: "image", title: "String trio performing live" },
+  { id: 6, mediaUrl: "/images/venue-artists/singer-daisy.jpg", mediaType: "image", title: "Daisy — live singer" },
+  { id: 7, mediaUrl: "/videos/venues/venue-reel-3.mp4", mediaType: "video", title: "Venue performance reel 3" },
+  { id: 8, mediaUrl: "/images/venue-artists/guitar-singer.jpg", mediaType: "image", title: "Live guitar singer" },
+  { id: 9, mediaUrl: "/videos/venues/venue-reel-4.mp4", mediaType: "video", title: "Venue performance reel 4" },
+  { id: 10, mediaUrl: "/images/venue-artists/dj.jpg", mediaType: "image", title: "Live DJ set at venue" },
+  { id: 11, mediaUrl: "/images/venue-artists/sax-ash.jpg", mediaType: "image", title: "Ash on saxophone" },
+  { id: 12, mediaUrl: "/videos/venues/venue-reel-5.mp4", mediaType: "video", title: "Venue performance reel 5" },
+  { id: 13, mediaUrl: "/images/venue-artists/sax-y.jpg", mediaType: "image", title: "Live saxophonist performance" },
+  { id: 14, mediaUrl: "/videos/venues/venue-reel-6.mp4", mediaType: "video", title: "Venue performance reel 6" },
+  { id: 15, mediaUrl: "/images/venue-artists/violin.jpg", mediaType: "image", title: "Live violinist at venue" },
+  { id: 16, mediaUrl: "/images/venue-artists/violin-colette.jpg", mediaType: "image", title: "Colette — live violinist" },
+  { id: 17, mediaUrl: "/videos/venues/venue-reel-7.mp4", mediaType: "video", title: "Venue performance reel 7" },
+  { id: 18, mediaUrl: "/images/venue-artists/tara-harp.jpg", mediaType: "image", title: "Tara on harp" },
+  { id: 19, mediaUrl: "/videos/venues/venue-reel-8.mp4", mediaType: "video", title: "Venue performance reel 8" },
+  { id: 20, mediaUrl: "/images/venue-artists/hollywood-dancers-2.jpg", mediaType: "image", title: "Hollywood dancers at venue" },
+  { id: 21, mediaUrl: "/images/venue-artists/hollywood-dancers-3.jpg", mediaType: "image", title: "Hollywood dancers showcase" },
+  { id: 22, mediaUrl: "/videos/venues/venue-reel-9.mp4", mediaType: "video", title: "Venue performance reel 9" },
+  { id: 23, mediaUrl: "/images/venue-artists/burlesque.jpg", mediaType: "image", title: "Burlesque performer" },
+  { id: 24, mediaUrl: "/videos/venues/venue-reel-10.mp4", mediaType: "video", title: "Venue performance reel 10" },
+  { id: 25, mediaUrl: "/images/venue-artists/haifa-promo.jpg", mediaType: "image", title: "Haifa Jordan — live performance" },
+];
 
 export default function ForVenuesPage() {
   return (
