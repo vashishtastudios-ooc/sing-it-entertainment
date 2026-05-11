@@ -1,28 +1,16 @@
 services:
-  app:
+  singit_app:
     build: .
-    container_name: node_app
-    restart: always
+    container_name: singit_app
+
+    restart: unless-stopped
+
     expose:
       - "3000"
 
-  caddy:
-    image: caddy:latest
-    container_name: caddy
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - app
+    networks:
+      - web
 
-volumes:
-  caddy_data:
-  caddy_config:
-
-
-
+networks:
+  web:
+    external: true

@@ -1,8 +1,0 @@
-singitentertainment.com, www.singitentertainment.com {
-    reverse_proxy node_app:3000
-}
-
-
-
-
-
