@@ -5,6 +5,11 @@ services:
 
     restart: unless-stopped
 
+    # Inject runtime secrets (DATABASE_URL, ADMIN_PASSWORD, etc.) from .env.
+    # Read from the host at runtime, so secrets are never baked into the image.
+    env_file:
+      - .env
+
     expose:
       - "3000"
 
