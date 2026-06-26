@@ -8,7 +8,6 @@ const AUTO_SCROLL_DELAY_MS = 4000;
 const TRANSITION_DURATION_MS = 1000;
 const WHEEL_COOLDOWN_MS = 150;
 const HERO_ONE_VIDEO_URL = "/videos/hero-1.mp4";
-const HERO_TWO_VIDEO_URL = "/videos/hero-2.mp4";
 
 export default function HeroVideoSequence() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,7 +21,6 @@ export default function HeroVideoSequence() {
     offset: ["start start", "end end"],
   });
 
-  const secondPanelY = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
   const firstPanelScale = useTransform(scrollYProgress, [0, 1], [1, 0.96]);
   const firstPanelOpacity = useTransform(scrollYProgress, [0.5, 0.95], [1, 0.4]);
 
@@ -200,47 +198,17 @@ export default function HeroVideoSequence() {
           <div className="container hero-vseq-content">
             <p className="eyebrow">SING IT ENTERTAINMENT</p>
             <h1 className="hero-vseq-title">
-              UNFORGETTABLE
-              <br />
-              ENTERTAINMENT.
-              <br />
-              Seamlessly Managed.
+              World-Class Entertainment Agency — UK &amp; Worldwide
             </h1>
-            <p className="hero-vseq-sub">World-class entertainment. UK &amp; Worldwide.</p>
+            <p className="hero-vseq-sub">
+              The UK entertainment agency for weddings, corporate events and venues — every artist
+              personally vetted, every detail seamlessly managed.
+            </p>
             <Link href="/contact" className="hero-star-btn" aria-label="Get in touch">
               <span className="hero-star-sweep hero-star-sweep-top" />
               <span className="hero-star-sweep hero-star-sweep-bottom" />
               <span className="hero-star-inner">GET IN TOUCH</span>
             </Link>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="hero-vseq-panel hero-vseq-panel-two"
-          style={{ y: secondPanelY }}
-        >
-          <video
-            className="hero-vseq-video"
-            src={HERO_TWO_VIDEO_URL}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-          <div className="hero-vseq-overlay hero-vseq-overlay-strong" />
-          <div className="container hero-vseq-content">
-            <p className="eyebrow">MAKING MOMENTS UNFORGETTABLE</p>
-            <h2 className="hero-vseq-title hero-vseq-title-secondary">
-              YOUR GO-TO AGENCY
-              <br />
-              FOR EXCEPTIONAL
-              <br />
-              EVENTS.
-            </h2>
-            <p className="hero-vseq-sub">
-              Corporate. Private. Hospitality. World-class entertainment across the UK &amp; internationally.
-            </p>
           </div>
         </motion.div>
       </div>

@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Playfair_Display } from "next/font/google";
+import { Marcellus, Montserrat, Playfair_Display } from "next/font/google";
+import {
+  SITE_URL,
+  UK_SEO_KEYWORDS,
+  buildPageMetadata,
+  organizationJsonLd,
+} from "@/lib/seo";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -11,31 +17,17 @@ export const viewport: Viewport = {
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-body" });
 const playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
+const marcellus = Marcellus({ subsets: ["latin"], weight: "400", variable: "--font-hero" });
 
 export const metadata: Metadata = {
-  title: "World-Class Entertainment Management | Weddings, Events, Restaurants & Casinos | Sing It Entertainment",
-  description:
-    "Sing It Entertainment delivers world-class artists for weddings, corporate events and private occasions — and provides fully outsourced entertainment management for restaurants, hotels and casinos across the UK and internationally.",
-  keywords: [
-    "outsourced entertainment management",
-    "entertainment agency",
-    "restaurant entertainment",
-    "casino entertainment",
-    "hotel entertainment",
-    "wedding entertainment",
-    "corporate events",
-    "private events",
-    "live music",
-    "artist booking",
-    "UK",
-    "international",
-  ],
-  openGraph: {
-    title: "Sing It Entertainment | World-Class Entertainment. Seamlessly Managed.",
+  metadataBase: new URL(SITE_URL),
+  ...buildPageMetadata({
+    title: "Entertainment Agency UK | Weddings, Corporate & Venue Acts | Sing It",
     description:
-      "From outsourced entertainment management for hospitality venues to world-class artists for private events — Sing It delivers extraordinary entertainment across the UK and worldwide.",
-    type: "website",
-  },
+      "UK entertainment agency supplying world-class DJs, singers, musicians & performers for weddings, corporate events and venues. Personally vetted talent, London & worldwide. Get a quote.",
+    path: "/",
+    keywords: UK_SEO_KEYWORDS,
+  }),
 };
 
 export default function RootLayout({
@@ -44,8 +36,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${playfairDisplay.variable}`}>
-      <body>{children}</body>
+    <html lang="en-GB" className={`${montserrat.variable} ${playfairDisplay.variable} ${marcellus.variable}`}>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

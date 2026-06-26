@@ -77,6 +77,7 @@ export default function SiteHeader({ alwaysVisible = false }: { alwaysVisible?: 
                 ))}
               </div>
             </div>
+            <Link href="/blog">Blog</Link>
             <Link href="/contact">Contact</Link>
           </nav>
 
@@ -138,6 +139,7 @@ export default function SiteHeader({ alwaysVisible = false }: { alwaysVisible?: 
                   </Link>
                 ))}
               </div>
+              <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>Blog</Link>
               <Link href="/contact" className="mobile-nav-cta" onClick={closeMenu}>Contact</Link>
             </div>
           </div>

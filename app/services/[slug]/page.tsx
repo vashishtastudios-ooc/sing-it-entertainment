@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { buildPageMetadata } from "@/lib/seo";
 import { servicePages } from "../data";
 
 type ServicePageParams = {
@@ -25,21 +26,14 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     };
   }
 
-  const canonicalUrl = `https://www.singitentertainment.com/services/${service.slug}`;
-  return {
+  const canonicalUrl = `/services/${service.slug}`;
+  return buildPageMetadata({
     title: service.ukSeoTitle,
     description: service.ukSeoDescription,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      title: service.ukSeoTitle,
-      description: service.ukSeoDescription,
-      url: canonicalUrl,
-      type: "website",
-      images: [service.heroImage],
-    },
-  };
+    path: canonicalUrl,
+    image: service.heroImage,
+    imageAlt: `${service.shortTitle} entertainment — ${service.ukSeoTitle}`,
+  });
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
@@ -51,14 +45,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.title,
-    description: service.ukSeoDescription,
+    serviceType: service.serviceType,
     provider: {
-      "@type": "EntertainmentBusiness",
+      "@type": "Organization",
       name: "Sing It Entertainment",
-      areaServed: "United Kingdom",
       url: "https://www.singitentertainment.com",
     },
-    areaServed: "United Kingdom",
+    areaServed: { "@type": "Country", name: "United Kingdom" },
+    description: service.schemaDescription,
   };
 
   return (

@@ -4,15 +4,14 @@ import ScrollRevealHeading from "../components/ScrollRevealHeading";
 import ServicesMegaGrid from "../components/ServicesMegaGrid";
 import SiteHeader from "../components/SiteHeader";
 import { serviceCatalogItems } from "./catalog";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Entertainment Services | Sing It Entertainment",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Entertainment Services UK | DJs, Singers, Musicians & More | Sing It",
   description:
-    "Explore our full entertainment services catalog, from DJs and singers to aerial acts, show productions and specialty event experiences across the UK and internationally.",
-  alternates: {
-    canonical: "https://www.singitentertainment.com/services",
-  },
-};
+    "Explore our roster of world-class entertainment — DJs, singers, musicians, dancers, magicians and circus performers for events and venues across the UK.",
+  path: "/services",
+});
 
 export default function ServicesIndexPage() {
   return (
@@ -21,7 +20,7 @@ export default function ServicesIndexPage() {
       <section className="services-index-hero">
         <div className="container">
           <p className="eyebrow">WORLD-CLASS EVENT ENTERTAINMENT</p>
-          <ScrollRevealHeading text="OUR SERVICES" />
+          <ScrollRevealHeading text="Our Entertainment Services" as="h1" />
           <p className="lead">
             Sing It provides a unique and bespoke service with a network unlike any other.
             Our talent pool comprises a vast array of entertainers enabling us to bring

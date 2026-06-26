@@ -1,0 +1,16 @@
+{
+  "email": {
+    "provider": "none",
+    "fromName": "Sing It Entertainment",
+    "fromEmail": "myevent@singit.uk.com"
+  },
+  "google": {
+    "placeId": "",
+    "minRating": 4
+  },
+  "instagram": {
+    "enabled": false,
+    "username": "",
+    "limit": 8
+  }
+}

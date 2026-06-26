@@ -64,8 +64,8 @@ export default function ContactPageContent() {
             Let&apos;s Make Magic
           </div>
           <h1 className="contactx-title">
-            YOUR EVENT
-            <span>STARTS HERE</span>
+            LET&apos;S TALK
+            <span>ABOUT YOUR EVENT</span>
           </h1>
           <p className="contactx-subline">
             Share your vision and we&apos;ll shape a premium entertainment

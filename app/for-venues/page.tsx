@@ -3,12 +3,14 @@ import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import ScrollRevealHeading from "../components/ScrollRevealHeading";
 import EventsCarousel from "../components/EventsCarousel";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Outsourced Entertainment Management for Restaurants, Hotels & Casinos | Sing It Entertainment",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Outsourced Entertainment Management for Venues UK | Sing It",
   description:
-    "Sing It Entertainment manages your complete entertainment schedule — artist bookings, scheduling, cancellations and in-house sound — within your existing budget. UK and international.",
-};
+    "Fully outsourced entertainment management for restaurants, hotels and casinos across the UK. We run your entire entertainment schedule so your team can focus on the business.",
+  path: "/for-venues",
+});
 
 const services = [
   {
@@ -90,10 +92,7 @@ export default function ForVenuesPage() {
       <section className="fv-hero">
         <div className="container fv-hero-inner">
           <p className="eyebrow">FOR VENUES &amp; HOSPITALITY</p>
-          <h1 className="fv-hero-title">
-            YOUR VENUE.<br />
-            <span>OUR ENTERTAINMENT.</span>
-          </h1>
+          <h1 className="fv-hero-title">Outsourced Entertainment Management for Hospitality Venues</h1>
           <p className="fv-hero-sub">
             We manage your complete entertainment schedule so you don&apos;t have to.
           </p>

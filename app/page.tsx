@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import MagicBento from "./components/MagicBento";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +10,24 @@ import HeroVideoSequence from "./components/HeroVideoSequence";
 import SiteHeader from "./components/SiteHeader";
 import AboutStackingCards from "./components/AboutStackingCards";
 import TalentStackingCards from "./components/TalentStackingCards";
+import NewsletterSignup from "./components/NewsletterSignup";
+import InstagramFeed from "./components/InstagramFeed";
+import { buildPageMetadata } from "@/lib/seo";
+import { getHomeSeo, getPublishedTestimonials } from "@/lib/content/store";
+
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getHomeSeo();
+  return buildPageMetadata({
+    title: seo.title,
+    description: seo.description,
+    path: "/",
+    image: seo.ogImage,
+    imageAlt: seo.ogImageAlt,
+    keywords: seo.keywords,
+  });
+}
 
 const talentItems = [
   {
@@ -155,7 +174,18 @@ const eventCards = [
   })),
 ];
 
-export default function Home() {
+export default async function Home() {
+  const storedTestimonials = await getPublishedTestimonials();
+  const testimonialItems = storedTestimonials.length
+    ? storedTestimonials.map((t) => ({
+        name: t.name,
+        role: t.role,
+        service: t.service,
+        image: t.image,
+        text: t.text,
+      }))
+    : testimonials;
+
   return (
     <main className="site-shell">
       <SiteHeader />
@@ -270,7 +300,7 @@ export default function Home() {
         <div className="container">
           <p className="eyebrow">WHAT THEY SAY</p>
           <ScrollRevealHeading text="WHAT OUR CLIENTS SAY" />
-          <TestimonialsSlider items={testimonials} />
+          <TestimonialsSlider items={testimonialItems} />
         </div>
       </section>
 
@@ -280,6 +310,8 @@ export default function Home() {
           <EventsCarousel cards={eventCards} />
         </div>
       </section>
+
+      <InstagramFeed />
 
       <section id="contact" className="contact">
         <div className="container">
@@ -296,6 +328,7 @@ export default function Home() {
       </section>
       <footer className="site-footer">
         <div className="container">
+          <NewsletterSignup />
           <p>© 2026 Sing It Events Ltd.</p>
         </div>
       </footer>

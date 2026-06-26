@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Testimonial {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  role      String
+  service   String
+  image     String
+  text      String
+  rating    Int     @default(5)
+  source    String  @default("manual")
+  order     Int     @default(0)
+  published Boolean @default(true)
+
+  @@map("testimonials")
+}
+
+model BlogPost {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  title          String
+  slug           String    @unique
+  excerpt        String    @default("")
+  coverImage     String    @default("")
+  body           String    @default("")
+  tags           String[]  @default([])
+  author         String    @default("Sing It Entertainment")
+  status         String    @default("draft")
+  seoTitle       String    @default("")
+  seoDescription String    @default("")
+  publishedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@map("blog_posts")
+}
+
+model Subscriber {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String   @default("")
+  source    String   @default("website")
+  status    String   @default("subscribed")
+  createdAt DateTime @default(now())
+
+  @@map("subscribers")
+}
+
+/// Singleton documents (homepage SEO, site settings) stored as JSON blobs
+/// keyed by a fixed string id, e.g. "home-seo" and "site-settings".
+model Setting {
+  id   String @id @map("_id")
+  data Json
+
+  @@map("settings")
+}

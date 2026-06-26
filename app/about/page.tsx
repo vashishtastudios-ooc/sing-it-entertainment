@@ -3,15 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import AboutParallaxScene from "../components/AboutParallaxScene";
 import SiteHeader from "../components/SiteHeader";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us | Sing It Entertainment",
+export const metadata: Metadata = buildPageMetadata({
+  title: "About Sing It Entertainment | Founded by Haifa Jordan | UK Agency",
   description:
-    "Learn about Sing It Entertainment, our story, and the experience behind our bespoke event entertainment services across the UK & Worldwide.",
-  alternates: {
-    canonical: "https://www.singitentertainment.com/about",
-  },
-};
+    "Sing It Entertainment is a UK agency built by entertainment professionals, founded by vocalist Haifa Jordan. Trusted by Hilton, Genting, Soho House and the BBC.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -23,13 +22,7 @@ export default function AboutPage() {
         <div className="container aboutx-hero-grid">
           <article className="aboutx-panel">
             <p className="eyebrow">ABOUT US</p>
-            <h1>
-              WELCOME TO
-              <br />
-              SING IT
-              <br />
-              ENTERTAINMENT
-            </h1>
+            <h1>An Entertainment Agency Built by Professionals</h1>
             <p className="lead">
               An entertainment agency like no other providing a bespoke service
               to each and every client. We represent a talent pool of incredible

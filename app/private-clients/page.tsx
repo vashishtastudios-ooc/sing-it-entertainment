@@ -3,12 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import { servicePages } from "../services/data";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Private & Corporate Event Entertainment | Sing It Entertainment",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Wedding & Event Entertainment Hire UK | Private Clients | Sing It",
   description:
-    "Book world-class DJs, singers, musicians, dancers, magicians and circus performers for weddings, private celebrations and corporate events across the UK and internationally.",
-};
+    "World-class entertainment for weddings, milestone celebrations, private parties and corporate events across the UK. Personally vetted DJs, singers, musicians and performers.",
+  path: "/private-clients",
+});
 
 export default function PrivateClientsPage() {
   return (
@@ -18,10 +20,7 @@ export default function PrivateClientsPage() {
       <section className="pc-hero">
         <div className="container pc-hero-inner">
           <p className="eyebrow">FOR PRIVATE & CORPORATE CLIENTS</p>
-          <h1 className="pc-hero-title">
-            YOUR EVENT.<br />
-            <span>WORLD-CLASS TALENT.</span>
-          </h1>
+          <h1 className="pc-hero-title">Entertainment for Weddings, Celebrations &amp; Private Events</h1>
           <p className="pc-hero-sub">
             We supply unforgettable entertainment for weddings, private celebrations,
             corporate events and luxury occasions.
