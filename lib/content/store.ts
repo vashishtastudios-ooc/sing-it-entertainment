@@ -1,5 +1,6 @@
 import type {
   BlogPost as PrismaBlogPost,
+  ContactSubmission as PrismaContactSubmission,
   Subscriber as PrismaSubscriber,
   Testimonial as PrismaTestimonial,
 } from "@prisma/client";
@@ -11,6 +12,8 @@ import {
 } from "./defaults";
 import type {
   BlogPost,
+  ContactStatus,
+  ContactSubmission,
   HomeSeo,
   Settings,
   Subscriber,
@@ -331,4 +334,70 @@ export async function saveSettings(settings: Settings): Promise<Settings> {
     update: { data: settings },
   });
   return settings;
+}
+
+/* ---------------- Contact submissions ---------------- */
+
+function mapContact(c: PrismaContactSubmission): ContactSubmission {
+  return {
+    id: c.id,
+    name: c.name,
+    email: c.email,
+    audience: c.audience,
+    actType: c.actType,
+    eventDate: c.eventDate,
+    location: c.location,
+    message: c.message,
+    status:
+      c.status === "read" || c.status === "archived"
+        ? (c.status as ContactStatus)
+        : "new",
+    createdAt: c.createdAt.toISOString(),
+  };
+}
+
+export async function createContactSubmission(input: {
+  name: string;
+  email: string;
+  audience?: string;
+  actType?: string;
+  eventDate?: string;
+  location?: string;
+  message?: string;
+}): Promise<ContactSubmission> {
+  const row = await prisma.contactSubmission.create({
+    data: {
+      name: input.name,
+      email: input.email,
+      audience: input.audience ?? "",
+      actType: input.actType ?? "",
+      eventDate: input.eventDate ?? "",
+      location: input.location ?? "",
+      message: input.message ?? "",
+      status: "new",
+    },
+  });
+  return mapContact(row);
+}
+
+export async function getContactSubmissions(): Promise<ContactSubmission[]> {
+  const rows = await prisma.contactSubmission.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+  return rows.map(mapContact);
+}
+
+export async function countNewContactSubmissions(): Promise<number> {
+  return prisma.contactSubmission.count({ where: { status: "new" } });
+}
+
+export async function setContactStatus(
+  id: string,
+  status: ContactStatus
+): Promise<void> {
+  await prisma.contactSubmission.updateMany({ where: { id }, data: { status } });
+}
+
+export async function deleteContactSubmission(id: string): Promise<void> {
+  await prisma.contactSubmission.deleteMany({ where: { id } });
 }

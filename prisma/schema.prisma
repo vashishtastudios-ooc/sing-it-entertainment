@@ -60,3 +60,18 @@ model Setting {
 
   @@map("settings")
 }
+
+model ContactSubmission {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  audience  String   @default("")
+  actType   String   @default("")
+  eventDate String   @default("")
+  location  String   @default("")
+  message   String   @default("")
+  status    String   @default("new") // new | read | archived
+  createdAt DateTime @default(now())
+
+  @@map("contact_submissions")
+}

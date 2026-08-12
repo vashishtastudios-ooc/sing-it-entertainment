@@ -76,6 +76,21 @@ export type Settings = {
   instagram: InstagramSettings;
 };
 
+export type ContactStatus = "new" | "read" | "archived";
+
+export type ContactSubmission = {
+  id: string;
+  name: string;
+  email: string;
+  audience: string;
+  actType: string;
+  eventDate: string;
+  location: string;
+  message: string;
+  status: ContactStatus;
+  createdAt: string;
+};
+
 export type ContentData = {
   seo: { home: HomeSeo };
   testimonials: Testimonial[];

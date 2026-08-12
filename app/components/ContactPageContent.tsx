@@ -23,7 +23,49 @@ export default function ContactPageContent() {
   const [activeAudience, setActiveAudience] = useState<string>("");
   const [activeType, setActiveType] = useState<string>("");
   const [visionText, setVisionText] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [eventDate, setEventDate] = useState("");
+  const [location, setLocation] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
+
+    const audienceLabel =
+      audienceTypes.find((a) => a.id === activeAudience)?.label ?? "";
+    const actLabel = eventTypes.find((t) => t.id === activeType)?.label ?? "";
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          audience: audienceLabel,
+          actType: actLabel,
+          eventDate,
+          location,
+          message: visionText,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setStatus("error");
+        setErrorMsg(data.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Something went wrong. Please try again.");
+    }
+  };
 
   const getPrefillMessage = (serviceLabel: string) =>
     `I'm interested in booking ${serviceLabel} for my event.`;
@@ -110,13 +152,7 @@ export default function ContactPageContent() {
         </div>
 
         <p className="contactx-label">Or send us a brief</p>
-        <form
-          className="contactx-form-card"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubmitted(true);
-          }}
-        >
+        <form className="contactx-form-card" onSubmit={handleSubmit}>
           <div className="contactx-form-header">
             <div>
               <h2>Book your act</h2>
@@ -128,11 +164,26 @@ export default function ContactPageContent() {
           <div className="contactx-grid-two">
             <div className="contactx-field">
               <label className="contactx-field-label" htmlFor="cx-name">Your name</label>
-              <input id="cx-name" className="contactx-input" placeholder="e.g. Sarah Khan" required />
+              <input
+                id="cx-name"
+                className="contactx-input"
+                placeholder="e.g. Sarah Khan"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
             </div>
             <div className="contactx-field">
               <label className="contactx-field-label" htmlFor="cx-email">Email address</label>
-              <input id="cx-email" className="contactx-input" type="email" placeholder="you@example.com" required />
+              <input
+                id="cx-email"
+                className="contactx-input"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
           </div>
 
@@ -182,11 +233,23 @@ export default function ContactPageContent() {
           <div className="contactx-grid-two">
             <div className="contactx-field">
               <label className="contactx-field-label" htmlFor="cx-date">Event date</label>
-              <input id="cx-date" className="contactx-input" type="date" />
+              <input
+                id="cx-date"
+                className="contactx-input"
+                type="date"
+                value={eventDate}
+                onChange={(e) => setEventDate(e.target.value)}
+              />
             </div>
             <div className="contactx-field">
               <label className="contactx-field-label" htmlFor="cx-location">Location / venue</label>
-              <input id="cx-location" className="contactx-input" placeholder="e.g. Dubai, London…" />
+              <input
+                id="cx-location"
+                className="contactx-input"
+                placeholder="e.g. Dubai, London…"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
             </div>
           </div>
 
@@ -206,12 +269,22 @@ export default function ContactPageContent() {
             Your details are kept strictly confidential and used only to prepare your proposal.
           </p>
 
+          {status === "error" && (
+            <p className="contactx-note" style={{ color: "#ff6b81" }}>
+              {errorMsg}
+            </p>
+          )}
+
           <button
             type="submit"
             className={`contactx-submit ${submitted ? "is-success" : ""}`}
-            disabled={submitted}
+            disabled={submitted || status === "submitting"}
           >
-            {submitted ? "✓ Sent — we'll be in touch soon" : "Send Brief"}
+            {submitted
+              ? "✓ Sent — we'll be in touch soon"
+              : status === "submitting"
+              ? "Sending…"
+              : "Send Brief"}
           </button>
         </form>
       </section>
